@@ -82,10 +82,10 @@ Even with the same composition, different space groups correspond to different s
 ## Step 4 (0.75/1 → 1/1) — Structural Similarity
 
 At this stage, the predicted and reference structures are already very similar. However, small geometric
-differences may still exist. A good example is graphite. The interlayer distance between graphene layers 
+differences may still exist. A good example is graphite. The interlayer distance between graphite layers 
 can vary without changing the fundamental structure. Therefore, if a model  predicts the correct structure
 but slightly incorrect lattice parameters, it should receive only a small penalty. This is very different from 
-predicting the wrong space group, which represents a fundamentally incorrect structure.
+predicting the wrong space group.
 
 To quantify these differences, we compute the Root Mean Square (RMS)  displacement, which measures the
 average distance between corresponding atoms after optimal alignment of the two structures.
@@ -96,6 +96,8 @@ Where:
 
 - d_i is the distance between corresponding atoms
 - N is the number of atoms
+
+The RMS value is calculated using pymatgen matcher.get_rms_dist(mp_struct, llm_struct)
 
 The RMS is a standard measure of structural deviation, representing the  average magnitude of atomic displacements between two structures
 The final score is defined as:
@@ -110,7 +112,7 @@ The parameter k controls how strongly structural deviations are penalized in the
 
 In the exponential term exp(-k * RMS), k acts as a decay constant: larger values of k lead to a faster decrease in the score for small deviations, while smaller values result in a more tolerant scoring behavior.
 
-The optimal choice of k depends on how strict the evaluation should be and can be adjusted depending on the application. This parameter can be further discussed and tuned during presentation. I chosse k=1.5
+The optimal choice of k depends on how strict the evaluation should be and can be adjusted depending on the application. This parameter can be further discussed and tuned during presentation. I choose k=1.5
 
 ------------------------------------------------------------
 
@@ -202,7 +204,7 @@ A good example is silicon: the primitive cell contains only 2 atoms, while the c
 
   Structure.from_spacegroup(lattice, elements, Wyckoff_positions)
 
-  This method reconstructs the full structure using symmetry operations using Wyckoff_positions. However, it assumes that the input corresponds to a conventional representation and may fail or produce incorrect results if applied to primitive cells.  To decide which approach to use, we first construct the structure directly using Structure(...). We then compare the detected space group with the reported one:
+  This method reconstructs the full structure using symmetry operations using Wyckoff_positions. However, it assumes that the input corresponds to a conventional representation and may fail or produce incorrect results if applied to primitive cells.  To decide which approach to use, we first construct the structure directly using Structure(...). We then compare the detected space group from struct.get_primitive_structure() with the reported one in the dataset:
   
   - If they match → the structure is considered consistent and it happens to be a primitive cell.
   - If they do not match → the structure is reconstructed using symmetry  
@@ -211,7 +213,7 @@ A good example is silicon: the primitive cell contains only 2 atoms, while the c
 
   This issue is addressed by applying a merging step to remove duplicate or nearly overlapping atomic sites.
 
-- In 23 out of 255 cases, this procedure fails. This occurs when the lattice parameters and atomic positions are inconsistent with the reported space group. In such cases, the symmetry expansion produces incorrect structures, and the merging step cannot recover a valid configuration. As a result, structure matching fails and the RMS if infinity. 30/255 corresponds to the cases where the final scores is 0.75, so 23/30 is because of these situation.
+- In 23 out of 255 cases, this procedure fails. This occurs when the lattice parameters and atomic positions are inconsistent with the reported space group. In such cases, the symmetry expansion produces incorrect structures, and the merging step cannot recover a valid configuration leading to different number of atoms in the strucutures. As a result, structure matching fails and the RMS is infinity, leading to a Similarity Score of 0.75/1. In 30/255 cases corresponds to the cases where the final scores is 0.75, and 23/30 is because of these situation.
 
 Given more time, I should explore more eficient ways to approch this problem. I’m worried that I may have overthought this.
 
