@@ -50,7 +50,7 @@ Each prediction is evaluated sequentially using four steps.
 If a step fails, the evaluation stops at that stage.
 
 
-## Step 1 (0.25) — Valid Response
+## Step 1 (0.25/1) — Valid Response
 
 Condition:
 success == True
@@ -59,7 +59,7 @@ The model must return a valid output. A model that frequently fails is not relia
 
 ------------------------------------------------------------
 
-## Step 2 (0.50) — Chemical Formula Match
+## Step 2 (0.50/1) — Chemical Formula Match
 
 Condition:
 llm_formula == mp_formula
@@ -68,7 +68,7 @@ Matching the formula ensures the model correctly identifies the material composi
 
 ------------------------------------------------------------
 
-## Step 3 (0.75) — Space Group Match
+## Step 3 (0.75/1) — Space Group Match
 
 Condition:
 llm_space_group == mp_space_group
@@ -77,7 +77,7 @@ Even with the same composition, different space groups correspond to different s
 
 ------------------------------------------------------------
 
-## Step 4 (0.75 → 1.0) — Structural Similarity
+## Step 4 (0.75/1 → 1/1) — Structural Similarity
 
 At this stage, the predicted and reference structures are already very similar. However, small geometric
 differences may still exist. A good example is graphite. The interlayer distance between graphene layers 
