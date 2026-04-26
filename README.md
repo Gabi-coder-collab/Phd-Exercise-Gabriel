@@ -1,16 +1,16 @@
-Phd-Exercise-Gabriel
+# Phd-Exercise-Gabriel
 Evaluation of LLM Performance for Crystal Structure Prediction
 
 ------------------------------------------------------------
 
-REQUIREMENTS
+# REQUIREMENTS
 
 Install all dependencies with:
 python3 -m pip install pandas numpy scipy pymatgen spglib
 
 ------------------------------------------------------------
 
-HOW TO RUN
+# HOW TO RUN
 
 python3 run.py
 
@@ -35,7 +35,7 @@ At the end, you can find the downloaded CSV file containing the individual simil
 
 ------------------------------------------------------------
 
-METHODOLOGY
+# METHODOLOGY
 
 The evaluation framework consists of two main components:
 
