@@ -97,10 +97,8 @@ Where:
 - d_i is the distance between corresponding atoms
 - N is the number of atoms
 
-The RMS value is calculated using pymatgen matcher.get_rms_dist(mp_struct, llm_struct)
+The RMS value is calculated using pymatgen matcher.get_rms_dist(mp_struct, llm_struct) and the final score is defined as:
 
-The RMS is a standard measure of structural deviation, representing the  average magnitude of atomic displacements between two structures
-The final score is defined as:
 Score = 0.75 + 0.25 * exp(-k*RMS)
 
 Interpretation:
@@ -190,7 +188,7 @@ This approach allows a balanced comparison between accuracy and efficiency, whil
 
 ------------------------------------------------------------
 
-## LIMITATIONS
+## CHALLENGES AND LIMITATIONS
 
 - The main challenge in this work was comparing crystal structures represented in different forms using only a reduced basis of atoms.
 If both the LLM and Materials Project (MP) structures were provided in primitive cells, this would not be an issue. In that case, the full structure could be directly constructed using:
