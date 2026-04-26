@@ -202,7 +202,7 @@ A good example is silicon: the primitive cell contains only 2 atoms, while the c
 
   Structure.from_spacegroup(lattice, elements, Wyckoff_positions)
 
-  This method reconstructs the full structure using symmetry operations using Wyckoff_positions. However, it assumes that the input corresponds to a conventional representation and may fail or produce incorrect results if applied to primitive cells.  To decide which approach to use, we first construct the structure directly using Structure(...). We then compare the detected space group from struct.get_primitive_structure() with the reported one in the dataset:
+  This method reconstructs the full structure using symmetry operations using Wyckoff_positions. However, it assumes that the input corresponds to a conventional representation and may fail or produce incorrect results if applied to primitive cells.  To decide which approach to use, we first construct the structure directly using Structure(...). We then compare the detected space group from SpacegroupAnalyzer(struct).get_space_group_symbol() with the reported one in the dataset:
   
   - If they match → the structure is considered consistent and it happens to be a primitive cell.
   - If they do not match → the structure is reconstructed using symmetry  
