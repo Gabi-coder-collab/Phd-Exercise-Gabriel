@@ -32,7 +32,9 @@ Only these final results should be considered when evaluating model performance.
 
 At the end, you can find the downloaded CSV file containing the individual similarity scores named as results.csv. These results are also in the repositorium.
 
+# DATASET NOTES
 
+I removed the space group index from the LLM predictions because it is redundant, as each number uniquely identifies a single space group.
 ------------------------------------------------------------
 
 # METHODOLOGY
