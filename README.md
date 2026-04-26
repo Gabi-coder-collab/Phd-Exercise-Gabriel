@@ -44,7 +44,7 @@ The evaluation framework consists of two main components:
 
 ------------------------------------------------------------
 
-#### 1. SIMILARITY SCORE
+# 1. SIMILARITY SCORE
 
 Each prediction is evaluated sequentially using four steps.
 If a step fails, the evaluation stops at that stage.
@@ -112,7 +112,7 @@ The optimal choice of k depends on how strict the evaluation should be and can b
 
 ------------------------------------------------------------
 
-RESULTS — SIMILARITY SCORE
+## RESULTS — SIMILARITY SCORE
 
 {'claude-sonnet-4-6': 0.77,
  'gemini-2.5-pro': 0.65,
@@ -120,7 +120,7 @@ RESULTS — SIMILARITY SCORE
  'gpt-5.4': 0.60,
  'gpt-5.4-mini': 0.38}
 
-Analysis:
+### Analysis:
 
 - claude-sonnet-4-6 performs best and frequently reaches high structural accuracy.
 - gemini-2.5-pro, gemini-2.5-flash, and gpt-5.4 show intermediate performance.
@@ -128,9 +128,9 @@ Analysis:
 
 ------------------------------------------------------------
 
-2. TIME EVALUATION
+# 2. TIME SCORE
 
-Average Processing Times:
+## Average Processing Times:
 
 {'gemini-2.5-pro': 37.05,
  'gemini-2.5-flash': 18.4,
@@ -138,14 +138,14 @@ Average Processing Times:
  'gpt-5.4': 5.81,
  'gpt-5.4-mini': 2.99}
 
-Insight:
+## Insight:
 
 Some models have similar accuracy but very different runtimes.
 For example, gpt-5.4 achieves similar accuracy to Gemini models but runs significantly faster.
 
 ------------------------------------------------------------
 
-FINAL SCORE
+# FINAL SCORE
 
 To balance accuracy and efficiency, the final evaluation metric combines the similarity score with a time-based penalty:
 
@@ -167,7 +167,7 @@ This normalization ensures that the time penalty is scaled relative to the overa
 This approach allows a balanced comparison between accuracy and efficiency, while keeping the metric interpretable and adaptable.
 ------------------------------------------------------------
 
-FINAL RANKING
+## FINAL RANKING
 
 {'claude-sonnet-4-6': 0.70,
  'gpt-5.4': 0.62,
@@ -177,7 +177,7 @@ FINAL RANKING
 
 ------------------------------------------------------------
 
-KEY OBSERVATIONS
+## KEY OBSERVATIONS
 
 - claude-sonnet-4-6 is the best overall model.
 - gpt-5.4 ranks second due to strong efficiency.
@@ -186,7 +186,7 @@ KEY OBSERVATIONS
 
 ------------------------------------------------------------
 
-LIMITATIONS
+## LIMITATIONS
 
 - The main challenge in this work was comparing crystal structures represented in different forms using only a reduced basis of atoms.
 If both the LLM and Materials Project (MP) structures were provided in primitive cells, this would not be an issue. In that case, the full structure could be directly constructed using:
