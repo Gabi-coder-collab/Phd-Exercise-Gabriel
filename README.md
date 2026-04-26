@@ -15,10 +15,23 @@ HOW TO RUN
 python3 run.py
 
 The script will:
+
 - Load the dataset
-- run the scrit run.py
-- There is some debugging 
-- Output the final ranking
+- Execute the evaluation pipeline (run.py)
+
+Note:
+
+Some debug messages may appear during execution. These can be ignored.
+The relevant outputs are printed at the end of the execution:
+
+- Average Similarity Score
+- Average Processing Time
+- Final Classification (model ranking)
+
+Only these final results should be considered when evaluating model performance.
+
+At the end, you can find the downloaded CSV file containing the individual similarity scores.
+
 
 ------------------------------------------------------------
 
