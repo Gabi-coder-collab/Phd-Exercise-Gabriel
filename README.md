@@ -211,8 +211,10 @@ A good example is silicon: the primitive cell contains only 2 atoms, while the c
 
   This issue is addressed by applying a merging step to remove duplicate or nearly overlapping atomic sites.
 
-- In 23 out of 255 cases, this procedure fails. This occurs when the lattice parameters and atomic positions are inconsistent with the reported space group. In such cases, the symmetry expansion produces incorrect structures, and the merging step cannot recover a valid configuration. As a result, structure matching fails and the RMS if infinity.
+- In 23 out of 255 cases, this procedure fails. This occurs when the lattice parameters and atomic positions are inconsistent with the reported space group. In such cases, the symmetry expansion produces incorrect structures, and the merging step cannot recover a valid configuration. As a result, structure matching fails and the RMS if infinity. 30/255 corresponds to the cases where the final scores is 0.75, so 23/30 is because of these situation.
 
 Given more time, I should explore more eficient ways to approch this problem. I’m worried that I may have overthought this.
+
+
 
 ------------------------------------------------------------
