@@ -44,7 +44,7 @@ The evaluation framework consists of two main components:
 
 ------------------------------------------------------------
 
-1. SIMILARITY SCORE
+#### 1. SIMILARITY SCORE
 
 Each prediction is evaluated sequentially using four steps.
 If a step fails, the evaluation stops at that stage.
