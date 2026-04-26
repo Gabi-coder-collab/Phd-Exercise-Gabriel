@@ -16,7 +16,7 @@ python3 run.py
 
 The script will:
 
-- Load the dataset
+- Load the dataset llm_crystal_benchmark_dataset.csv
 - Execute the evaluation pipeline (run.py)
 
 Note:
@@ -30,7 +30,7 @@ The relevant outputs are printed at the end of the execution:
 
 Only these final results should be considered when evaluating model performance.
 
-At the end, you can find the downloaded CSV file containing the individual similarity scores.
+At the end, you can find the downloaded CSV file containing the individual similarity scores named as results.csv. These results are also in the repositorium.
 
 
 ------------------------------------------------------------
@@ -39,8 +39,8 @@ METHODOLOGY
 
 The evaluation framework consists of two main components:
 
-1. Similarity Score (accuracy)
-2. Time Score (efficiency)
+1. SIMILARITY SCORE (accuracy)
+2. TIME SCORE (efficiency)
 
 ------------------------------------------------------------
 
@@ -49,9 +49,8 @@ The evaluation framework consists of two main components:
 Each prediction is evaluated sequentially using four steps.
 If a step fails, the evaluation stops at that stage.
 
-------------------------------------------------------------
 
-Step 1 (0.25) — Valid Response
+## Step 1 (0.25) — Valid Response
 
 Condition:
 success == True
@@ -60,7 +59,7 @@ The model must return a valid output. A model that frequently fails is not relia
 
 ------------------------------------------------------------
 
-Step 2 (0.50) — Chemical Formula Match
+## Step 2 (0.50) — Chemical Formula Match
 
 Condition:
 llm_formula == mp_formula
@@ -69,7 +68,7 @@ Matching the formula ensures the model correctly identifies the material composi
 
 ------------------------------------------------------------
 
-Step 3 (0.75) — Space Group Match
+## Step 3 (0.75) — Space Group Match
 
 Condition:
 llm_space_group == mp_space_group
@@ -78,7 +77,7 @@ Even with the same composition, different space groups correspond to different s
 
 ------------------------------------------------------------
 
-Step 4 (0.75 → 1.0) — Structural Similarity
+## Step 4 (0.75 → 1.0) — Structural Similarity
 
 At this stage, the predicted and reference structures are already very similar. However, small geometric
 differences may still exist. A good example is graphite. The interlayer distance between graphene layers 
